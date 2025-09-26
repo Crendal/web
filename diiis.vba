@@ -28,5 +28,18 @@ End If
 '엑셀수식
 =IF(VLOOKUP(B6,FX!$H:$AK,30,0)="YES",
 "비정형(" & VLOOKUP(B6,FX!$H:$AL,31,0) & ")",
-IF(VLOOKUP(B6,FX!$H:$AK,30,0)="NO",IF(AND(VLOOKUP(B6,FX!$H:$G,-1,0)=" 2 - Forward",VLOOKUP(B6,FX!$H:$V,15,0)=" 1 - 명목원금교환(실물인수도 발생)"),"선물환",
-IF(AND(VLOOKUP(B6,FX!$H:$G,-1,0)=" 2 - Forward",VLOOKUP(B6,FX!$H:$V,15,0)=" 2 - 차액만결제"),"NDF",IF(VLOOKUP(B6,FX!$H:$G,-1,0)=" 3 - F/X 스왑","FX스왑",""))),""))
+IF(VLOOKUP(B6,FX!$H:$AK,30,0)="NO",
+IF(AND(VLOOKUP(B6,FX!$H:$G,-1,0)=" 2 - Forward",VLOOKUP(B6,FX!$H:$V,15,0)=" 1 - 명목원금교환(실물인수도 발생)"),"선물환",
+IF(AND(VLOOKUP(B6,FX!$H:$G,-1,0)=" 2 - Forward",VLOOKUP(B6,FX!$H:$V,15,0)=" 2 - 차액만결제"),"NDF",
+IF(VLOOKUP(B6,FX!$H:$G,-1,0)=" 3 - F/X 스왑","FX스왑",
+""))),""))
+
+
+
+'Yes No 두가지만 존재하면, YES가 아닐 때 무조건 NO
+=IF(VLOOKUP(B6,FX!$H:$AK,30,0)="YES",
+"비정형(" & VLOOKUP(B6,FX!$H:$AL,31,0) & ")",
+IF(AND(VLOOKUP(B6,FX!$H:$G,-1,0)=" 2 - Forward",VLOOKUP(B6,FX!$H:$V,15,0)=" 1 - 명목원금교환(실물인수도 발생)"),"선물환",
+IF(AND(VLOOKUP(B6,FX!$H:$G,-1,0)=" 2 - Forward",VLOOKUP(B6,FX!$H:$V,15,0)=" 2 - 차액만결제"),"NDF",
+IF(VLOOKUP(B6,FX!$H:$G,-1,0)=" 3 - F/X 스왑","FX스왑",
+""))))
